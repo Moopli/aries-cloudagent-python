@@ -11,16 +11,15 @@ def make_seed(data: bytes):
 	# print(len(seed) - nacl.bindings.crypto_sign_SEEDBYTES)
 	return seed
 
-b64_pub = "SFwkxB6OHiJgGh3wWd_4ZLq2-XcosiNjGhK84Yg3Jyg="
-b64_priv = "sIHSXY9ANBOyqWXmFvmXzOTTZlEW2EtKUkWcT6xXo4g="
+b64_pub = "fZVwrHMKi3JynorE5eDi1jHzo-vmIFWQ9dbXfMs57jA="
+b64_priv = "q0xM-cokts_2QEqHoaiVZro2NgckC2A-20HbEFs3lnZ9lXCscwqLcnKeisTl4OLWMfOj6-YgVZD11td8yznuMA=="
 
-msg_in = """{"protected":"eyJlbmMiOiJjaGFjaGEyMHBvbHkxMzA1X2lldGYiLCJ0eXAiOiJKV00vMS4wIiwiYWxnIjoiQXV0aGNyeXB0IiwicmVjaXBpZW50cyI6W3siZW5jcnlwdGVkX2tleSI6IjNWcWgyaWRJZm1nYVQ3LUs2QUNPak5qMm41NF9FYkpicnRSQkN1U2pPN2VILXVEa2FhR054d0l1NjdvdHFwTDgiLCJoZWFkZXIiOnsia2lkIjoiNXNUcjZoVGVENWhIcXZCZ0JFaUtweFpFU3JRbnVXOUNSSmZ6YTczbUF3RXciLCJzZW5kZXIiOiJXcGtaMmhOT2ktekQyamlwZzFkREM3QzVqVzE0UGF4QTdKVUw3UmRaWHpkSS1iZnI3R2cycnNwRlVrd0xQNWRpWXc0V2U0bzBYWmdPS1pZdHlGSkxldmhueVNmN0E2MWFrU2c2dHZnQVN2MWxQV3ZwRWRXQ3lUSHE5UE09IiwiaXYiOiJVUV94TXhuU0dDN19zbTJLYndvRGNCUEU5OElrbzNlaCJ9fV19","iv":"ONbsFv3XBKJm7zsH","ciphertext":"JTcCktit29m9MCg4-w4XyyhnKCZ_JfpgrQ0=","tag":"Q2xVeiyFi9j1F5wuL0Fixg=="}""".encode("ascii")
+msg_in = """{"protected":"eyJlbmMiOiJjaGFjaGEyMHBvbHkxMzA1X2lldGYiLCJ0eXAiOiJKV00vMS4wIiwiYWxnIjoiQXV0aGNyeXB0IiwicmVjaXBpZW50cyI6W3siZW5jcnlwdGVkX2tleSI6InF2YlhZQUFyM09pWHN4QVZoWWdNd2NJTUhuVXdCLTk2ZTVNQWE4MlBOd2QybFhtRGEtQzdpMGQwdmZjTHFnRzciLCJoZWFkZXIiOnsia2lkIjoiOVRFOFIyOWRwSEx0c0poaVlGbXJCcmdTTkRpUGJWTmNvOHpIb01CRmhwaGQiLCJzZW5kZXIiOiJTLUFpQUtGeHB4RGZJYVFBREZxdlJkZno2UnZjeGh0amhSczBpWUdpVGhGZFAwdFFuNzNvcGpGelZ4ZnJDVWp5VUVMc1JiLW1VamhFY0ctVU44RXRRSlc1a0hYYTlvWmxVWUtVaG5hM0FZOUtIQmtLSmVqNXFRWmVpTU09IiwiaXYiOiJzTGFBSXRKcllwaGVMa1RydS1vRmZwRTJ4LXhwRnAwVCJ9fV19","iv":"7zNmSKQc3TJ45Pro","ciphertext":"Z9m7zNd6yQ4bkorhZjvVNKmnBhktv1FgsK8=","tag":"DSxJKQ2zgKxbS95RcN1zQg=="}""".encode("ascii")
 
 # concat the priv and pub keys to produce the 64-byte nacl priv format
 def find_key(param):
 	sk = b64_to_bytes(b64_priv, urlsafe=True)
-	pk = b64_to_bytes(b64_pub, urlsafe=True)
-	return sk + pk
+	return sk
 
 data_in, sender_VK, recip_VK = crypto.decode_pack_message(msg_in, find_key)
 
