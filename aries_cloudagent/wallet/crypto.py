@@ -350,6 +350,7 @@ def locate_pack_recipient_key(
             not_found.append(recip_vk_b58)
             continue
         recip_vk = b58_to_bytes(recip_vk_b58)
+        print("Pub:", bytes_to_b64(recip_vk, urlsafe=True))
         pk = nacl.bindings.crypto_sign_ed25519_pk_to_curve25519(recip_vk)
         sk = nacl.bindings.crypto_sign_ed25519_sk_to_curve25519(secret)
 
