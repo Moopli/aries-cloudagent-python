@@ -74,6 +74,10 @@ class JwsLinkedDataSignature(LinkedDataSignature):
         data = self._create_jws(encoded_header=encoded_header, verify_data=verify_data)
         signature = await self.key_pair.sign(data)
 
+        print(f"TESTING signature data: {data.hex()}")
+        print(f"TESTING signature: {signature.hex()}")
+        print(f"TESTING pubkey: {self.key_pair.public_key.hex()}")
+
         encoded_signature = bytes_to_b64(
             signature, urlsafe=True, pad=False, encoding="utf-8"
         )

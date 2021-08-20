@@ -109,6 +109,8 @@ class LinkedDataSignature(LinkedDataProof, metaclass=ABCMeta):
             proof=proof, document=document, document_loader=document_loader
         )
 
+        print(f"TESTING verify_data: {verify_data.hex()}")
+
         # Sign data
         proof = await self.sign(verify_data=verify_data, proof=proof)
 
@@ -177,6 +179,8 @@ class LinkedDataSignature(LinkedDataProof, metaclass=ABCMeta):
         c14n_doc = self._canonize(input=document, document_loader=document_loader)
 
         # TODO: detect any dropped properties using expand/contract step
+
+        print(f"TESTING canonical proof options: {c14n_proof_options}")
 
         return (
             sha256(c14n_proof_options.encode("utf-8")).digest()
