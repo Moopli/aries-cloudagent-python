@@ -150,7 +150,12 @@ class BbsBlsSignature2020(BbsBlsSignature2020Base):
             document=document, document_loader=document_loader
         )
 
-        return [*proof_statements, *document_statements]
+        ret = [*proof_statements, *document_statements]
+
+        for s in ret:
+            print(f"TESTING canonical proof statement: {s}")
+
+        return ret
 
     def _canonize_proof(
         self, *, proof: dict, document: dict, document_loader: DocumentLoaderMethod
